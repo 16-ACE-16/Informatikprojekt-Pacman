@@ -1,9 +1,9 @@
 #       Projekt von Alex, Pierrre, Magnus und Felix
 #               Gegner:
 
-import pygame       #Importierung aller notwendigen Pakete
+import pygame                   #Import aller notwendigen Pakete
 import random
-from Grundlegendes import *     #Importierung der schriftart, -Größe etc aus "Grundlegendes", denn dort ist dies definiert
+from Grundlegendes import *     #Import der Schriftart, -Größe etc aus "Grundlegendes", denn dort ist dies definiert
 
 vec = pygame.math.Vector2
 
@@ -29,7 +29,7 @@ class Enemy:
             if self.time_to_move():
                 self.move()
 
-        # Setting grid position in reference to pix position
+        # Gitter- und Pixelposition
         self.grid_pos[0] = (self.pix_pos[0]-TOP_BOTTOM_BUFFER +
                             self.app.cell_width//2)//self.app.cell_width+1
         self.grid_pos[1] = (self.pix_pos[1]-TOP_BOTTOM_BUFFER +
@@ -41,7 +41,7 @@ class Enemy:
 
     def set_speed(self):    #Geschwindigkeit
         if self.personality in ["speedy", "scared"]:
-            speed = 2
+            speed = 1.1
         else:
             speed = 1
         return speed
@@ -59,7 +59,7 @@ class Enemy:
             else:
                 return vec(COLS-2, ROWS-2)
 
-    def time_to_move(self):     #wann die Gegner ausm Käfig dürfen
+    def time_to_move(self):     #wann die Gegner aus dem Käfig dürfen
         if int(self.pix_pos.x+TOP_BOTTOM_BUFFER//2) % self.app.cell_width == 0:
             if self.direction == vec(1, 0) or self.direction == vec(-1, 0) or self.direction == vec(0, 0):
                 return True
@@ -68,7 +68,7 @@ class Enemy:
                 return True
         return False
 
-    def move(self):     #Zur Bewegung werden sozusagen Stufen definiert, die unterschiedliche Situationen betreffen (Sieht Figur = Abfahrt, jagen!)
+    def move(self):     #Zur Bewegung werden Stufen definiert, die unterschiedliche Situationen betreffen (Sieht Figur = Abfahrt, jagen!)
         if self.personality == "random":    #Bewegt sich zufällig
             self.direction = self.get_random_direction()
         if self.personality == "slow":
@@ -121,7 +121,7 @@ class Enemy:
                     shortest.insert(0, step["Current"])
         return shortest
 
-    def get_random_direction(self):
+    def get_random_direction(self): #BUG
         while True:
             number = random.randint(-2, 1)
             if number == -2:
@@ -144,13 +144,13 @@ class Enemy:
 
     def set_colour(self):       #Farben der 4 Gegner
         if self.number == 0:
-            return (43, 78, 203)
+            return (127, 0, 255)
         if self.number == 1:
-            return (197, 200, 27)
+            return (0, 127, 255)
         if self.number == 2:
-            return (189, 29, 29)
+            return (0, 255, 0)
         if self.number == 3:
-            return (215, 159, 33)
+            return (255, 0, 0)
 
     def set_personality(self):  #Geschwindigkeit der Gegner
         if self.number == 0:

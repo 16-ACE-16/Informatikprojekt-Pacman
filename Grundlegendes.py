@@ -16,7 +16,9 @@ BLACK = (0, 0, 0)
 RED = (208, 22, 22)
 GREY = (107, 107, 107)
 WHITE = (255, 255, 255)
-PLAYER_COLOUR = (190, 194, 15)
+PLAYER_COLOUR = (255, 255, 0)
+LILA = (140, 255, 148)
+HINTERGRUND = (0, 51, 102)
 
-Schriftgroeße = 20
-Schrift = 'arial'              #'Zusatz/Oswald-Bold.ttf'
+Schriftgroeße = 30
+Schrift = 'zusatz/Oswald-Medium.ttf'
